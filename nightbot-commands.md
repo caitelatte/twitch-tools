@@ -116,6 +116,14 @@ funny command to randomly shift the main letters on a US keyboard one to the lef
 $(eval var allkeys = "`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./"; var allkeys_shifted = "1234567890-=`wertyuiop[]\\qsdfghjkl;'axcvbnm,./z"; function shiftkey(inkey) {return Math.random() < 0.2? allkeys_shifted[allkeys.indexOf(inkey)] || inkey : inkey}; (decodeURIComponent("$(querystring)")||"$(user)").toLowerCase().replace(/./g, shiftkey) )
 ```
 
+### !time
+
+Generate a fake time within your general time range with the current correct minute.
+
+```js
+it's probably like $(eval hour=(Math.floor(Math.random()*10) + 18) % 24; datehastobeanobject = new Date(); hour.toString().padStart(2, "0") + ":" + datehastobeanobject.getMinutes().toString().padStart(2, "0") )
+```
+
 ### !wide
 
 add a space between each letter of the command (using a regex instead of join for absolutely no good reason)
