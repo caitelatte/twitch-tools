@@ -82,6 +82,38 @@ $(eval Math.random() > 0.0001 ? "celeste".split('').sort(function(a, b) {return 
 $(eval Math.random() < 0.1 ? "hi " + decodeURIComponent("$(querystring)") + " i'm nightbot" : " ")
 ```
 
+### !blat
+
+let chat make a bacon-loaded [bacon lettuce avocado tomato sandwich](https://www.taste.com.au/recipes/blat/5730389b-354a-4cca-a7a1-ca4049dfd201)! code based on the !celeleste shuffling command.
+
+```js
+# all one line for nightbot command
+function l() {bWeight = 5; lWeight = 2; endWeight = 1; total = bWeight + lWeight + endWeight;roll = Math.random()*total; return ( roll <= bWeight ? '🥓' : roll <= bWeight + lWeight ? '🥬': '' ) }; var outtext = Array(); next = { "🍞": "🥓", "🥑": "🍅", "🍅": "🍞" }; outtext = ["🍞"]; for (var i = 1; i < 100; i ++) { nextletter = (next[outtext[i-1]] || l()); if (!nextletter) { outtext.push("🥑","🍅", "🍞"); break; } else { outtext.push(nextletter) } }; outtext.join("")
+
+# expanded so you can actually read it
+function l() {
+  bWeight = 5;
+  lWeight = 2;
+  endWeight = 1;
+  total = bWeight + lWeight + endWeight;
+  roll = Math.random()*total;
+  return ( roll <= bWeight ? '🥓' : roll <= bWeight + lWeight ? '🥬': '' )
+};
+var outtext = Array();
+next = { "🍞": "🥓", "🥑": "🍅", "🍅": "🍞" };
+outtext = ["🍞"];
+for (var i = 1; i < 100; i ++) {
+  nextletter = (next[outtext[i-1]] || l());
+  if (!nextletter) {
+    outtext.push("🥑","🍅", "🍞");
+    break;
+  } else {
+    outtext.push(nextletter)
+  }
+};
+outtext.join("")
+```
+
 ## Chaotic
 
 ### !angy
