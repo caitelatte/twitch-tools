@@ -86,10 +86,14 @@ $(eval Math.random() < 0.1 ? "hi " + decodeURIComponent("$(querystring)") + " i'
 
 ### !angy
 
-Replace sets of owo/uwu/o-o/e_e with angry accented versions of the eyes
+Replace sets of owo/uwu/o-o/e_e with angry accented versions of the eyes, and replaces `r` and `l` with w for the funny uwu text. Set up !angwy as an alias to !angy so it does a combination of both commands!
 
 ```js
-$(eval accentdict={"o": "ò$1ó", "u": "ù$1ú", "e": "è$1é", "O": "Ò$1Ó", "U": "Ù$1Ú", "E": "È$1É"}; function angy(match, p1, p2, p3, p4) {return accentdict[p2].replace("$1", p3)}; decodeURIComponent("$(querystring)").replace(/(([eou])([wn\-_])(\2))/ig, angy) )
+!addcom !uwu -cd=5 $(eval var input_text=decodeURIComponent(`$(querystring)` || '$(user)'); input_text.replace(/[lr]/gi, "w").replace(/([uo])(\1)/gi, "$1w$2");)
+
+!addcom !angy -cd=5 $(eval accentdict={"o": "ò$1ó", "u": "ù$1ú", "e": "è$1é", "O": "Ò$1Ó", "U": "Ù$1Ú", "E": "È$1É"}; function angy(match, p1, p2, p3, p4) {return accentdict[p2].replace("$1", p3)}; decodeURIComponent("$(querystring)").replace(/(([eou])([wn\-_])(\2))/ig, angy) )
+
+!addcom !angwy -cd=5 -a=!angy $(eval var input_text=decodeURIComponent(`$(querystring)` || '$(user)'); input_text.replace(/[lr]/gi, "w").replace(/([uo])(\1)/gi, "$1w$2");) owo
 ```
 
 ### !celeste
