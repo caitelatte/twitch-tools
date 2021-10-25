@@ -37,6 +37,14 @@ $(eval Math.random() < 0.1 ? "@$(user) " + decodeURIComponent("$(querystring)") 
 
 ## Useful
 
+### !shoutout/!so
+
+Shout out a fellow streamer! Maybe they've just raided in or maybe you just think they're very cool.
+
+```js
+$(twitch $(touser) "Go check out {{name}} over at {{url}} They were last playing {{game}}!")
+```
+
 ### !pickagame
 
 Pick a random line from a ; seperated list of lines on pastebin
@@ -71,16 +79,27 @@ $(eval Math.random() > 0.0001 ? "celeste".split('').sort(function(a, b) {return 
 
 ### Nightbot dad jokes
 
-"no u" command: `nightbot` -> `$(user) $(query)`
+"no u" command: `!addcom nightbot $(user) $(query)`
 
 > caitelatte: nightbot is stinky
 > nightbot: caitelatte is stinky
 
-"hi hungry i'm dad command" `i'm`, with an alias on `im`
+"hi hungry i'm dad" commands
 
 ```js
 $(eval Math.random() < 0.1 ? "hi " + decodeURIComponent("$(querystring)") + " i'm nightbot" : " ")
+$(eval query=decodeURIComponent("$(querystring)").match(/^am(.*)/i); (query != null && Math.random() < 0.1) ? "hello " + query[1] : " " )
 ```
+
+To add the full suite of funny dadjokes:
+
+```js
+!addcom -cd=5 i'm $(eval Math.random() < 0.1 ? "hi " + decodeURIComponent("$(querystring)") + " i'm nightbot" : " ")
+!addcom -cd=5 -a=i'm im
+!addcom -cd=5 i $(eval query=decodeURIComponent("$(querystring)").match(/^am(.*)/i); (query != null && Math.random() < 0.1) ? "hello " + query[1] : " " )
+!addcom nightbot $(user) $(query)
+```
+
 
 ### !blat
 
