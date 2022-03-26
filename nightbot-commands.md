@@ -4,36 +4,52 @@
 
 Remember that a command doesn't have to start with ! - many of the most fun commands are triggered on normal words, like "hello" or "FRICK"
 
-Counter:
+*   Counter:
 
-```js
-This is a command which counts from 1 to $(count)
-```
+    ```js
+    This is a command which counts from 1 to $(count)
+    ```
+    
+    *   Reset the count of a counter: make the !setcount command an alias to !commands, and make sure you enter the code for this one in your dashboard - if you enter it in chat, I find it sets the counter of !setcount and not the target one.
 
-Random selection from a list:
+        ```js
+        # if your mods just want an easy command to edit any counter, use this like
+        # !setcount !testingcount 10
+        edit $(1) -c=$(2)
+        
+        # if you just want to sometimes reset a specific counter to 0
+        edit !testingcount -c=0
+        ```
 
-```js
-$(eval things=["list", "of", "things"]; things[Math.floor(Math.random() * things.length)])
-```
+*   Random selection from a list:
 
-Percentage chance:
+    ```js
+    $(eval things=["list", "of", "things"]; things[Math.floor(Math.random() * things.length)])
+    ```
 
-```js
-There is a $(eval Math.ceil(Math.random()*100))% chance Caite will kill another jellyfish in the next 5 minutes
-```
+*   Percentage chance:
 
-Use decoded query input or the username (hat tip sleepy__dan__)
+    ```js
+    There is a $(eval Math.ceil(Math.random()*100))% chance Caite will kill another jellyfish in the next 5 minutes
+    ```
 
-```js
-$(eval input=decodeURIComponent("$(querystring)" || "$(user)"); input)
-```
+*   Use decoded query input or the username (hat tip sleepy__dan__)
 
-Chance of returning something or nothing - this tests the random() thing for an arbitrary barrier, and returns an empty string if it's not passed, which is just ignored by the twitch message API.
+    ```js
+    $(eval input=decodeURIComponent("$(querystring)" || "$(user)"); input)
+    ```
 
-```js
-$(eval Math.random() < 0.1 ? "@$(user) " + decodeURIComponent("$(querystring)") : " ")
-```
+*   Chance of returning something or nothing - this tests the random() thing for an arbitrary barrier, and returns an empty string if it's not passed, which is just ignored by the twitch message API.
 
+    ```js
+    $(eval Math.random() < 0.1 ? "@$(user) " + decodeURIComponent("$(querystring)") : " ")
+    ```
+
+*   Up to 5 random elements picked from a list:
+
+    ```js
+    $(eval extras=["cope","mald","Burgy","YEEHAWKING","touch grass","KirbyBlob","banned","miau"];output=[];for (i = 0;i<Math.ceil(Math.random()*5);i++) {output.push(extras[Math.floor(Math.random()*extras.length)])};output.join(" + ") )
+     ```
 
 ## Useful
 
@@ -100,39 +116,65 @@ To add the full suite of funny dadjokes:
 !addcom nightbot $(user) $(query)
 ```
 
+## Food
 
-### !blat
+### !blat / !blt / !vegesandwich / !queermeal
 
-let chat make a bacon-loaded [bacon lettuce avocado tomato sandwich](https://www.taste.com.au/recipes/blat/5730389b-354a-4cca-a7a1-ca4049dfd201)! code based on the !celeleste shuffling command.
+Let chat make a bacon-loaded [bacon lettuce avocado tomato sandwich](https://www.taste.com.au/recipes/blat/5730389b-354a-4cca-a7a1-ca4049dfd201)! Alternatively, a !BLT (no avo), a !vegesandwich, or a !queermeal with a food item from each letter in LGBTQIA! You can also build on !friedrice to make your own menu item that involves any base item (the rice emoji) and a selection of up to ten other ingredients :)
 
 ```js
-# all one line for nightbot command
-function l() {bWeight = 5; lWeight = 2; endWeight = 1; total = bWeight + lWeight + endWeight;roll = Math.random()*total; return ( roll <= bWeight ? '🥓' : roll <= bWeight + lWeight ? '🥬': '' ) }; var outtext = Array(); next = { "🍞": "🥓", "🥑": "🍅", "🍅": "🍞" }; outtext = ["🍞"]; for (var i = 1; i < 100; i ++) { nextletter = (next[outtext[i-1]] || l()); if (!nextletter) { outtext.push("🥑","🍅", "🍞"); break; } else { outtext.push(nextletter) } }; outtext.join("")
+# !blat
+$(eval function l() {bWeight = 5; lWeight = 2; endWeight = 1; total = bWeight + lWeight + endWeight;roll = Math.random()*total; return ( roll <= bWeight ? '🥓' : roll <= bWeight + lWeight ? '🥬': '' ) }; var outtext = Array(); next = { "🍞": "🥓" }; outtext = ["🍞"]; for (var i = 1; i < 100; i ++) { nextletter = (next[outtext[i-1]] || l()); if (!nextletter) { outtext.push("🥑","🍅", "🍞"); break; } else { outtext.push(nextletter) } }; outtext.join("") )
 
-# expanded so you can actually read it
-function l() {
-  bWeight = 5;
-  lWeight = 2;
-  endWeight = 1;
-  total = bWeight + lWeight + endWeight;
-  roll = Math.random()*total;
-  return ( roll <= bWeight ? '🥓' : roll <= bWeight + lWeight ? '🥬': '' )
-};
-var outtext = Array();
-next = { "🍞": "🥓", "🥑": "🍅", "🍅": "🍞" };
-outtext = ["🍞"];
-for (var i = 1; i < 100; i ++) {
-  nextletter = (next[outtext[i-1]] || l());
-  if (!nextletter) {
-    outtext.push("🥑","🍅", "🍞");
-    break;
-  } else {
-    outtext.push(nextletter)
-  }
-};
-outtext.join("")
+# !blt
+$(eval function l() {bWeight = 5; lWeight = 2; endWeight = 1; total = bWeight + lWeight + endWeight;roll = Math.random()*total; return ( roll <= bWeight ? '🥓' : roll <= bWeight + lWeight ? '🥬': '' ) }; var outtext = Array(); next = { "🍞": "🥓" }; outtext = ["🍞"]; for (var i = 1; i < 100; i ++) { nextletter = (next[outtext[i-1]] || l()); if (!nextletter) { outtext.push("🍅", "🍞"); break; } else { outtext.push(nextletter) } }; outtext.join("") )
+
+# !vegesandwich
+$(eval vegetals = "🫒 🥑 🍆 🥕 🌽 🌶️ 🫑 🥒 🥬 🍄 🥚 🧂 🧀 🍅 🍳".split(" "); height = Math.floor(Math.random()*10); sandwich = ["🍞"]; for (i=0;i<height;i++) {sandwich.push(vegetals[Math.floor(Math.random()*vegetals.length)])}; sandwich.push("🍞"); sandwich.length > 2 ? sandwich.join("") : "🍞🧈🍞" )
+
+# !queermeal
+@$(user) here's your LGBTQIA+ meal of the day: $(eval L=["🍋","🥬","🍗","🍭","🍬","☕","🥛"];G=["🍇","🧄","🥗","🥟","🧃","🍷"];B=["🍓","🍌","🫐","🫑","🥦","🍞","🥖","🥯","🥓","🥩","🍔","🌯","🥫","🍱","🧈","🧋","🍺"];T=["🍅","🌮","🍤","🥡","🫖","☕"];Q=["🧀"];I=["🍨","🧊","🍦","🍛"];A=["🍎","🍏","🍍"];function rand(inlist){return inlist[Math.floor(Math.random()*inlist.length)]};[rand(L),rand(G),rand(B),rand(T),rand(Q),rand(I),rand(A)].join("") )
+
+# !friedrice
+$(eval ingredients = "🍆 🥕 🌽 🌶️ 🫑 🥬 🍄 🥚 🧂 🧀 🍳".split(" "); height = Math.ceil(Math.random()*10); frypan = ["🍚"]; for (i=0;i<height;i++) {frypan.push(ingredients [Math.floor(Math.random()*ingredients.length)])}; frypan.join("") ) 
 ```
 
+<details>
+  <summary>!blat code on separate lines so you can actually read it!</summary>
+  ```js
+  # !blat expanded so you can actually read it
+  function l() {
+    bWeight = 5;
+    lWeight = 2;
+    endWeight = 1;
+    total = bWeight + lWeight + endWeight;
+    roll = Math.random()*total;
+    return ( roll <= bWeight ? '🥓' : roll <= bWeight + lWeight ? '🥬': '' )
+  };
+  var outtext = Array();
+  next = { "🍞": "🥓", "🥑": "🍅", "🍅": "🍞" };
+  outtext = ["🍞"];
+  for (var i = 1; i < 100; i ++) {
+    nextletter = (next[outtext[i-1]] || l());
+    if (!nextletter) {
+      outtext.push("🥑","🍅", "🍞");
+      break;
+    } else {
+      outtext.push(nextletter)
+    }
+  };
+  outtext.join("")
+  ```
+</details>
+
+### !fight
+  
+Fight a user or concept in a random game of random chance! Replace "CatChamp" and "Funk!" with the emotes of your choosing :)
+  
+```js
+	$(user) fights $(query) in $(eval fights=["a game of wits", "a sea of thieves arena", "a throweline race", "code golf", "a game of chance", "a game of favour with the RNG god", "10x1a", "10x7b"]; fights[Math.floor(Math.random()*fights.length)]) and $(eval Math.random() > 0.5 ? "wins CatChamp" : "loses Funk!" )
+```
+  
 ## Chaotic
 
 ### !angy
@@ -157,7 +199,7 @@ $(eval ("e".repeat(Math.min($(count), 393))+"celeste").split('').sort( function(
 
 ### !m
 
-replace all n's with m, and add an extra m to certain parts of each word.
+replace all n's with m, and add an extra m to certain parts of each word for comemdic effemct.
 
 ```js
 $(eval imput=decodeURIComponent("$(querystring)"||"$(user)").split(" "); for (var i = 0; i < imput.length; i++) { imput[i] = imput[i].replace(/n/gi, 'm'); mamtches = imput[i].match(/([aeiou])([^aeioum])/ig); if (mamtches) {mamtch = mamtches[Math.floor(Math.random()*mamtches.length)]; imput[i] = imput[i].replace(mamtch, mamtch.replace(/(.)(.)/, "$1m$2"))} }; imput.join(" ") )
@@ -185,4 +227,14 @@ add a space between each letter of the command (using a regex instead of join fo
 
 ```js
 $(eval decodeURIComponent("$(querystring)").replace(/./g, '$& ') )
+```
+  
+### !ab and !ba
+  
+replace all vowels and consonants with the 🅰️🆎🅾️🅱️ emojis as appropriate! fully reversible with !ba, though there may be some information loss.
+  
+```js
+$(eval input=decodeURIComponent("$(querystring)" || "$(user)"); input.replace(/o/ig, "🅾️").replace(/[aeiuy][^aeiu🅾️y ]/ig, "🆎").replace(/[aeiuy]/ig, "🅰️").replace(/[^aeiuy🅰️🆎🅾️ ]/ig, "🅱️") )
+  
+$(eval function random(match, offset, string) {match == "🅰️" ? word="aeiuy" : word="qwrtpsdfghjklzxcvbnm"; return word.split("")[Math.floor(Math.random()*word.length)] }; input=decodeURIComponent("$(querystring)"||"$(user)"); input.replace(/🅾️/g, "o").replace(/🆎/g, "🅰️🅱️").replace(/🅰️|🅱️/g, random).replace(/AAAA/g, "aaaa") )
 ```
