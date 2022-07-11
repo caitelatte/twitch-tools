@@ -75,6 +75,12 @@ Pick a random line from a ; seperated list of lines on pastebin
 streamer's local time is $(time Australia/Sydney "h:mm a z").
 ```
 
+### !wiki
+Get a quick Wikipedia summary of a topic being conversed in chat.
+```js
+$(eval a=$(urlfetch json https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exchars=380&exintro=true&titles=$(querystring)&explaintext=1&formatversion=2&format=json&origin=*)['query']['pages'][0]['extract'];)
+```
+
 ## Fun
 
 ### !beans
